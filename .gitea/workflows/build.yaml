@@ -1,0 +1,16 @@
+name: Builder
+run-name: ${{ gitea.actor }} building
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Build-Project:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event on branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
+      - name: Build package
+        run: |
+          git clone --single-branch --branch main https://git.primefactorsolutions.com/PFS/pfs-intra.git && cd pfs-intra && ./mvnw clean package -Pproduction && unlink /home/ubuntu/pfs-intra/app.jar && cp target/*.jar /home/ubuntu/pfs-intra/app.jar && sudo systemctl restart pfs-intra
+      - run: echo "This job's status is ${{ job.status }}."

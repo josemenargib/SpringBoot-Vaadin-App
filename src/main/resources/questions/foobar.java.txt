@@ -1,0 +1,46 @@
+package com.primefactorsolutions;
+
+import java.util.*;
+import java.lang.reflect.*;
+import java.util.stream.Collectors;
+
+public class TestClass {
+
+    // ------------ IMPLEMENTAR AQUI  --------------------------------
+
+    public static String getFooBar(int N) {
+        return "TODO";
+    }
+
+
+    // ------------- NO MODIFICAR DESDE ESTA LINEA --------------------
+
+    public static class Tests {
+        public static Map.Entry<String, Boolean> testNInvalido() {
+            boolean result = getFooBar(-1).equals("");
+
+            return Map.entry("N invalido retorna vacio", result);
+        }
+
+        public static Map.Entry<String, Boolean> testNValido() {
+            boolean result = getFooBar(7).equals("1,Foo,Bar,Foo,5,FooBar,7");
+
+            return Map.entry("N valido correcto", result);
+        }
+    }
+
+    public static Map<String, Boolean> run() {
+        Map<String, Boolean> results = Arrays.stream(Tests.class.getDeclaredMethods())
+                        .map(m -> {
+                            try {
+                                return (Map.Entry<String, Boolean>) m.invoke(null);
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            } catch (InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+
+        return results;
+    }
+}

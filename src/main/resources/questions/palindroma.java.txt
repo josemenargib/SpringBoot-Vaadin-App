@@ -1,0 +1,64 @@
+package com.primefactorsolutions;
+
+import java.util.*;
+import java.lang.reflect.*;
+import java.util.stream.Collectors;
+
+public class TestClass {
+
+    // ------------ IMPLEMENTAR AQUI  --------------------------------
+
+    public static String getPalindroma(String s) {
+        return "TODO";
+    }
+
+
+    // ------------- NO MODIFICAR DESDE ESTA LINEA --------------------
+
+    public static class Tests {
+        public static Map.Entry<String, Boolean> testPalindromaValido() {
+            boolean result = getPalindroma("Ab").equals("ABBA");
+
+            return Map.entry("palindrome es valido", result);
+        }
+
+        public static Map.Entry<String, Boolean> testPalindromaVacio() {
+            boolean result = getPalindroma("").equals("");
+
+            return Map.entry("palindrome vacio es valido", result);
+        }
+
+        public static Map.Entry<String, Boolean> testPalindromaUnico() {
+            boolean result = getPalindroma("z").equals("Z");
+
+            return Map.entry("palindrome un solo caracter es valido", result);
+        }
+
+        public static Map.Entry<String, Boolean> testPalindromaUnico() {
+            boolean result = getPalindroma("abba").equals("ABBA");
+
+            return Map.entry("palindrome un solo caracter es valido", result);
+        }
+
+        public static Map.Entry<String, Boolean> testPalindromaNull() {
+            boolean result = getPalindroma(null) == null;
+
+            return Map.entry("palindrome null es valido", result);
+        }
+    }
+
+    public static Map<String, Boolean> run() {
+        Map<String, Boolean> results = Arrays.stream(Tests.class.getDeclaredMethods())
+                        .map(m -> {
+                            try {
+                                return (Map.Entry<String, Boolean>) m.invoke(null);
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            } catch (InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+
+        return results;
+    }
+}

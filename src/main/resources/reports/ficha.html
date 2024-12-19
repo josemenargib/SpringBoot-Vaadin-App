@@ -1,0 +1,128 @@
+<html>
+<head>
+    <style>
+        @page {
+            size: 7in 9.25in;
+            margin: 27mm 16mm 27mm 16mm;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        h3 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div style="clear:both;"></div>
+<h2>FICHA DE CONTRATACIÓN</h2>
+<h3>Información General</h3>
+    <table>
+        <tr>
+            <td>Nombre Completo:</td>
+            <td>${firstName!""} ${lastName!""}</td>
+            <td>Sexo:</td>
+            <td>${gender!""}</td>
+        </tr>
+        <tr>
+            <td>Fecha de Nacimiento:</td>
+            <td>${birthday!""}</td>
+            <td>Edad:</td>
+            <td>${age!""}</td>
+        </tr>
+        <tr>
+            <td>Ciudad y País de Nacimiento:</td>
+            <td>${birthCity!""}</td>
+        </tr>
+        <tr>
+            <td>Dirección / Domicilio Actual:</td>
+            <td>${residenceAddress!""}</td>
+        </tr>
+        <tr>
+            <td>Estado Civil:</td>
+            <td>${maritalStatus!""}</td>
+            <td>Nro. CI:</td>
+            <td>${ci!""}</td>
+            <td>Expedido en:</td>
+            <td>${issuedIn!""}</td>
+        </tr>
+        <tr>
+            <td>Nro. Hijos:</td>
+            <td>${numberOfChildren!""}</td>
+        </tr>
+        <tr>
+            <td>Nro. Celular:</td>
+            <td>${phoneNumber!""}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>${personalEmail!""}</td>
+        </tr>
+        <tr>
+            <td>Código de Empleado:</td>
+            <td>${cod!""}</td>
+        </tr>
+        <tr>
+            <td>Cargo:</td>
+            <td>${position!""}</td>
+        </tr>
+        <tr>
+            <td>Equipo:</td>
+            <td>${team!""}</td>
+        </tr>
+    </table>
+
+    <h3>Información de Contratación</h3>
+    <table>
+        <tr>
+            <td>Fecha de Ingreso:</td>
+            <td>${dateOfEntry!""}</td>
+        </tr>
+        <tr>
+            <td>Tipo de Contrato:</td>
+            <td>${contractType!""}</td>
+        </tr>
+        <tr>
+            <td>Salario:</td>
+            <td>${salary!""}</td>
+        </tr>
+    </table>
+
+    <h3>Datos Bancarios</h3>
+    <table>
+        <tr>
+            <td>Banco:</td>
+            <td>${bankName!""}</td>
+        </tr>
+        <tr>
+            <td>Nro. Cuenta:</td>
+            <td>${accountNumber!""}</td>
+        </tr>
+    </table>
+
+    <h3>Datos de Gestora Pública y Seguro Social</h3>
+    <table>
+        <tr>
+            <td>Código Único de Asegurado (GPSS):</td>
+            <td>${gpss!""}</td>
+        </tr>
+        <tr>
+            <td>Derechohabientes:</td>
+            <td>${beneficiaries!""}</td>
+        </tr>
+    </table>
+</body>
+</html>

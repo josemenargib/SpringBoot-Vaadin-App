@@ -1,0 +1,14 @@
+name: PR Builder
+run-name: ${{ gitea.actor }} building PR
+on: [pull_request]
+
+jobs:
+  Build-PR:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: echo "The job was automatically triggered by a ${{ gitea.event_name }} event on branch ${{ gitea.head_ref }} and ref is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
+      - name: Build PR
+        if: gitea.base_ref == 'main'
+        run: |
+          git clone --single-branch --branch "${{ gitea.head_ref }}" https://git.primefactorsolutions.com/PFS/pfs-intra.git && cd pfs-intra && ./mvnw clean package -Pproduction
+      - run: echo "This job's status is ${{ job.status }}."

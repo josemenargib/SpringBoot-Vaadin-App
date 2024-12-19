@@ -1,0 +1,53 @@
+package com.primefactorsolutions;
+
+import java.util.*;
+import java.lang.reflect.*;
+import java.util.stream.Collectors;
+
+public class TestClass {
+
+    // ------------ IMPLEMENTAR AQUI  --------------------------------
+
+    /**
+    *
+    */
+    public static int getFibonaci(int n) {
+        // TODO: implementar aca
+        throw new RuntimeException("not implemented yet");
+    }
+
+
+    // ------------- NO MODIFICAR DESDE ESTA LINEA --------------------
+
+    public static class Tests {
+        public static Map.Entry<String, Boolean> testFibonaciSingle() {
+            boolean result = getFibonaci(1) == 0;
+
+            return Map.entry("fibonaci primer", result);
+        }
+
+        public static Map.Entry<String, Boolean> testFibonaciInvalido() {
+            try {
+               getFibonaci(-1);
+               return Map.entry("palindrome vacio es valido", false);
+            } catch (IllegalArgumentException e) {
+               return Map.entry("palindrome vacio es valido", true);
+            }
+        }
+    }
+
+    public static Map<String, Boolean> run() {
+        Map<String, Boolean> results = Arrays.stream(Tests.class.getDeclaredMethods())
+                        .map(m -> {
+                            try {
+                                return (Map.Entry<String, Boolean>) m.invoke(null);
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            } catch (InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+
+        return results;
+    }
+}
